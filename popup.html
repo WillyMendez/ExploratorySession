@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Exploratory Testing Chrome Extension</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/popUp.css">
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/popup.js"></script>
+</head>
+
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h5 style="color: #fff; text-align: center;">Exploratory session</h5>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <button id="BugBtn" class="BugButton btn btn-danger btn-block">Bug <span id="bugCounter"
+                        class="badge badge-light"></button>
+            </div>
+            <div id="addNewBug" class="reportAnnotation card-body">
+                <div class="form-group">
+                    <textarea id="newBugDescription" rows="4" placeholder="Bug description..."
+                        title="[Enter] to add a new line" class="form-control-sm"></textarea>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group-sm annotation-group" role="group" aria-label="Annotation Options">
+                        <button id="addNewBugBtn" class="btn btn-outline-danger add" title="Add new Bug [Crtl + Enter]"
+                            data-toggle="tooltip" data-placement="top">&nbsp;</button>
+                        <button id="addNewBugSCBtn" class="btn btn-outline-danger screenshot"
+                            title="Add new Bug with screenshot [Shift + Enter]" data-toggle="tooltip"
+                            data-placement="top">&nbsp;</button>
+                        <button name="Cancel" class="btn btn-outline-secondary btn-sm cancel"
+                            title="Cancel annotation">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="margin-bottom: 5%;">
+            <div class="card-header">
+                <button id="QuestionBtn" class="QuestionButton btn btn-success btn-block">Step <span
+                        id="questionCounter" class="badge badge-light"></span></button>
+            </div>
+            <div id="addNewQuestion" class="reportAnnotation card-body" style="display: block;">
+                <div class="form-group">
+                    <textarea id="newQuestionDescription" rows="4" placeholder="Step description..."
+                        title="[Enter] to add a new line" class="form-control-sm"></textarea>
+                </div>
+
+                <div class="card-footer">
+                    <div class="btn-group-sm annotation-group" role="group" aria-label="Annotation Options">
+                        <button id="addNewQuestionBtn" class="btn btn-outline-success add"
+                            title="Add new Question [Crtl + Enter]" data-toggle="tooltip"
+                            data-placement="top">&nbsp;</button>
+                        <button id="addNewQuestionSCBtn" class="btn btn-outline-success screenshot"
+                            title="Add new Question with screenshot [Shift + Enter or Double click]"
+                            data-toggle="tooltip" data-placement="top">&nbsp;</button>
+                        <!-- <button name="Cancel" class="btn btn-outline-secondary btn-sm cancel"
+                            title="Cancel annotation">Cancel</button> -->
+                        <button name="Cancel" class="btn btn-light btn-sm cancel"
+                            title="Cancel annotation">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footerCard" class="footer card-footer" style="display:none">
+        <div>
+            <div id="infoReset" class="alert alert-danger small" role="alert">
+                Press reset to create a new session!
+            </div>
+            <div class="btn-group btn-group-sm session-group" role="group" aria-label="Session Options">
+
+                <button id="resetBtn" class="btn btn-sm btn-danger" title="Reset session data">Reset</button>
+                <button id="exportCSVBtn" class="btn btn-secondary" title="Export session to CSV" data-toggle="tooltip"
+                    data-placement="top"></button>
+                <!--
+                <button id="exportJsonBtn" class="btn btn-secondary" title="Export session to JSON"
+                    data-toggle="tooltip" data-placement="top"></button>
+                <button id="importJsonBtn" class="btn btn-secondary" title="Import session from JSON"
+                    data-toggle="tooltip" data-placement="top">
+                </button>
+                <input type="file" name="jsonFile" class="file-input" id="importJsonInput" hidden="true"></input>
+                -->
+                <button id="previewBtn" class="btn btn-secondary" title="View Session report" data-toggle="tooltip"
+                    data-placement="top"></button>
+
+            </div>
+
+        </div>
+        <div id="resetConfirmation" class="card" style="display:none">
+            <div class="card-header bg-danger text-white">This will reset the current session.</div>
+            <div class="card-body">
+                <p class="text-danger">Are you sure?</p>
+                <button id="resetYes" class="actionButton btn btn-outline-danger btn-sm"
+                    title="Reset current session">Yes</button>
+                <button id="resetNo" class="cancelButton btn btn-success btn-sm" title="Cancel reset">No</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

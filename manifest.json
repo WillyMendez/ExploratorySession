@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "Exploratory Testing",
+  "short_name": "Chrome Exploratory Testing",
+  "description": "Exploratory testing session using Chrome",
+  "author": "@morvader",
+  "version": "2.1.4",
+  "icons": {
+    "16": "/icons/iconbignew.png",
+    "48": "/icons/iconbignew.png",
+    "128": "/icons/iconbignew.png"
+  },
+  "background": {
+    "scripts": [
+      "lib/browserInfo.js",
+      "lib/date.js",
+      "src/Annotation.js",
+      "src/Session.js",
+      "src/ExportSessionCSV.js",
+      "src/JSonSessionService.js",
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "permissions": [
+    "activeTab",
+    "tabs"
+  ],
+  "browser_action": {
+    "default_icon": "/icons/iconbignew.png",
+    "default_popup": "popup.html"
+  }
+}
