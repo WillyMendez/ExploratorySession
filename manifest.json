@@ -18,7 +18,8 @@
       "src/Session.js",
       "src/ExportSessionCSV.js",
       "src/JSonSessionService.js",
-      "background.js"
+      "background.js",
+      "js/actionclick.js"
     ],
     "persistent": true
   },
@@ -29,5 +30,6 @@
   "browser_action": {
     "default_icon": "/icons/iconbignew.png",
     "default_popup": "popup.html"
-  }
+  },
+  "matches": ["<all_urls>"]
 }

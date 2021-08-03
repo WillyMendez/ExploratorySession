@@ -22,7 +22,8 @@ function annotationListeners() {
     addNewBug("")
   });
   $(document).on('click', '#addNewQuestionBtn', () => {
-    addNewQuestion("")
+    //addNewQuestion("")
+    addActionClick()
   });
   $(document).on('click', '#addNewBugSCBtn', () => {
     addNewAnnotationWithScreenShot("bug")
@@ -63,6 +64,18 @@ function addNewBug(imageURL) {
   hideAllReports();
 };
 
+function addActionClick(){
+  /*
+  document.addEventListener('click', function (e) {
+    e = e || window.event;
+    var target = e.target || e.srcElement,
+      text = target.textContent || target.innerText;
+      alert('Click on, desde el nuevo archivo= ' + text);
+  }, false);*/
+  chrome.browserAction.onClicked.addListener(function(tab){
+    chrome.tabs.executeScript(null,{file:"js/actionclick.js"})
+})
+};
 
 function addNewQuestion(imageURL) {
   var questionName = $('#newQuestionDescription').val().trim();
@@ -70,9 +83,16 @@ function addNewQuestion(imageURL) {
   var session = background.session;
   var currentUrl;
   if (questionName == "") {
-    chrome.browserAction.getBadgeText({}, function (result) {
-      alert('Badge text = ' + result);
-    });
+    /*
+    document.addEventListener('click', function (e) {
+      e = e || window.event;
+      var target = e.target || e.srcElement,
+        text = target.textContent || target.innerText;
+        alert('Click on = ' + text);
+    }, false);*/
+
+    /*chrome.browserAction.onClicked.addListener(function(tab){
+      chrome.tabs.executeScript(null,{file:"js/actionclick.js"})})*/
     chrome.tabs.query({
         currentWindow: true,
         active: true
