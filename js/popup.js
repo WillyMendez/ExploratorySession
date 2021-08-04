@@ -17,18 +17,18 @@ function initElements() {
 
 function annotationListeners() {
   $(document).on('click', '#BugBtn', showBugReport);
-  $(document).on('click', '#QuestionBtn', showQuestionReport);
+  $(document).on('click', '#StepBtn', showStepReport);
   $(document).on('click', '#addNewBugBtn', () => {
     addNewBug("")
   });
-  $(document).on('click', '#addNewQuestionBtn', () => {
-    addNewQuestion("")
+  $(document).on('click', '#addNewStepBtn', () => {
+    addNewStep("")
   });
   $(document).on('click', '#addNewBugSCBtn', () => {
     addNewAnnotationWithScreenShot("bug")
   });
-  $(document).on('click', '#addNewQuestionSCBtn', () => {
-    addNewAnnotationWithScreenShot("question"),
+  $(document).on('click', '#addNewStepSCBtn', () => {
+    addNewAnnotationWithScreenShot("step"),
       $("#footerCard").fadeIn();
   });
 }
@@ -40,10 +40,10 @@ function showBugReport() {
 };
 
 
-function showQuestionReport() {
+function showStepReport() {
   hideAllReports();
-  $("#addNewQuestion").fadeIn();
-  $('#newQuestionDescription').focus();
+  $("#addNewStep").fadeIn();
+  $('#newStepDescription').focus();
 };
 
 
@@ -64,26 +64,23 @@ function addNewBug(imageURL) {
 };
 
 
-function addNewQuestion(imageURL) {
-  var questionName = $('#newQuestionDescription').val().trim();
+function addNewStep(imageURL) {
+  var stepName = $('#newStepDescription').val().trim();
   var background = chrome.extension.getBackgroundPage();
   var session = background.session;
   var currentUrl;
-  if (questionName == "") {
-    chrome.browserAction.getBadgeText({}, function (result) {
-      alert('Badge text = ' + result);
-    });
+  if (stepName == "") {
     chrome.tabs.query({
         currentWindow: true,
         active: true
       },
       function (tabs) {
         currentUrl = tabs[0].title;
-        questionName = "Action: " + currentUrl;
+        stepName = "Go to page: " + currentUrl;
 
         chrome.extension.sendMessage({
-          type: "addQuestion",
-          name: questionName,
+          type: "addStep",
+          name: stepName,
           imageURL: imageURL
         }, function (response) {
           updateCounters();
@@ -94,8 +91,8 @@ function addNewQuestion(imageURL) {
       });
   } else {
     chrome.extension.sendMessage({
-      type: "addQuestion",
-      name: questionName,
+      type: "addStep",
+      name: stepName,
       imageURL: imageURL
     }, function (response) {
       updateCounters();
@@ -113,8 +110,8 @@ function addNewAnnotationWithScreenShot(type) {
       case "bug":
         addNewBug(screenshotUrl);
         break;
-      case "question":
-        addNewQuestion(screenshotUrl);
+      case "step":
+        addNewStep(screenshotUrl);
         break;
     }
   })
@@ -190,10 +187,10 @@ function clearAllReports() {
 
 function hideAllReports() {
   $("#newBugDescription").val('');
-  $("#newQuestionDescription").val('');
+  $("#newStepDescription").val('');
 
   $("#addNewBug").slideUp();
-  $("#addNewQuestion").slideUp();
+  $("#addNewStep").slideUp();
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -227,10 +224,10 @@ function updateCounters() {
   var session = background.session;
 
   var bugs = session.getBugs().length;
-  var questions = session.getQuestions().length;
+  var steps = session.getSteps().length;
 
   bugs > 0 ? $("#bugCounter").html(" " + bugs + " ") : $("#bugCounter").html("");
-  questions > 0 ? $("#questionCounter").html(" " + questions + " ") : $("#questionCounter").html("");
+  steps > 0 ? $("#stepCounter").html(" " + steps + " ") : $("#stepCounter").html("");
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -255,16 +252,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  var newQuestionDescription = document.getElementById("newQuestionDescription");
-  newQuestionDescription.addEventListener("keypress", function (e) {
+  var newStepDescription = document.getElementById("newStepDescription");
+  newStepDescription.addEventListener("keypress", function (e) {
     var key = e.which || e.keyCode;
     if ((e.keyCode == 10 || e.keyCode == 13) && e.ctrlKey) {
-      addNewQuestion("");
+      addNewStep("");
       $("#footerCard").fadeIn();
     }
     if (key == 13) { // 13 is enter
       if (e.shiftKey == true) {
-        addNewAnnotationWithScreenShot("question");
+        addNewAnnotationWithScreenShot("step");
         $("#footerCard").fadeIn();
       }
     }
@@ -272,9 +269,9 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 document.addEventListener('DOMContentLoaded', function () {
-  var newQuestionDescription = document.getElementById("newQuestionDescription");
-  newQuestionDescription.addEventListener("dblclick", function (e) {
-    addNewAnnotationWithScreenShot("question");
+  var newStepDescription = document.getElementById("newStepDescription");
+  newStepDescription.addEventListener("dblclick", function (e) {
+    addNewAnnotationWithScreenShot("step");
     $("#footerCard").fadeIn();
   }, false);
 }, false);
@@ -308,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function () {
       type: "clearSession"
     }, function (response) {
       $("#bugCounter").html("");
-      $("#questionCounter").html("");
+      $("#stepCounter").html("");
     });
     $("#resetConfirmation").slideUp();
     $("#footerCard").slideUp();

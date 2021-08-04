@@ -32,5 +32,5 @@ function getAnnotaionFromType(annotation) {
     if (annotation.type == "Bug") return new Bug(name, URL,timeStamp,image);
     if (annotation.type == "Note") return new Note(name, URL,timeStamp,image);
     if (annotation.type == "Idea") return new Idea(name, URL,timeStamp,image);
-    if (annotation.type == "Question") return new Question(name, URL,timeStamp,image);
+    if (annotation.type == "Step") return new Step(name, URL,timeStamp,image);
 }

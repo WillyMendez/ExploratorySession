@@ -49,9 +49,9 @@ Session.prototype.getIdeas = function() {
   });
 };
 
-Session.prototype.getQuestions = function() {
+Session.prototype.getSteps = function() {
   return this.annotations.filter(function(item) {
-    return (item instanceof Question);
+    return (item instanceof Step);
   });
 };
 
@@ -68,6 +68,6 @@ Session.prototype.addNote = function(newNote) {
   this.annotations.push(newNote);
 };
 
-Session.prototype.addQuestion = function(newQuestion) {
-  this.annotations.push(newQuestion);
+Session.prototype.addStep = function(newStep) {
+  this.annotations.push(newStep);
 };

@@ -31,7 +31,7 @@ describe("Exploratory Session", function () {
 
 	});
 
-	describe("should manage annotations: bugs, ideas, questions and notes", function () {
+	describe("should manage annotations: bugs, ideas, steps and notes", function () {
 
 		var session;
 		var browserName = "TestBrowser";
@@ -117,20 +117,20 @@ describe("Exploratory Session", function () {
 
 		});
 
-		it("when a question is added there is one more annotation", function () {
-			var questionName = "Add a new question test";
+		it("when a step is added there is one more annotation", function () {
+			var stepName = "Add a new step test";
 			var url = "http://myTestPage.com"
 
-			var newQuestion = new Question(questionName, url);
+			var newStep = new Step(stepName, url);
 
-			session.addQuestion(newQuestion);
+			session.addStep(newStep);
 
 			var annotations = session.getAnnotations();
 
 			expect(annotations.length).toEqual(1);
 
-			//Check that is the question just inserted
-			expect(annotations[0].getName()).toEqual(questionName);
+			//Check that is the step just inserted
+			expect(annotations[0].getName()).toEqual(stepName);
 			expect(annotations[0].getURL()).toEqual(url);
 
 		});
@@ -140,7 +140,7 @@ describe("Exploratory Session", function () {
 			session.addBug(new Bug("Add Bug"));
 			session.addIdea(new Idea("Aded Idea"));
 			session.addNote(new Note("Add Note"));
-			session.addQuestion(new Question("Add Question"));
+			session.addStep(new Step("Add Step"));
 
 			var annotations = session.getAnnotations();
 
@@ -150,7 +150,7 @@ describe("Exploratory Session", function () {
 			expect(annotations[0] instanceof Bug).toBeTruthy();
 			expect(annotations[1] instanceof Idea).toBeTruthy();
 			expect(annotations[2] instanceof Note).toBeTruthy();
-			expect(annotations[3] instanceof Question).toBeTruthy();
+			expect(annotations[3] instanceof Step).toBeTruthy();
 
 		});
 
@@ -160,19 +160,19 @@ describe("Exploratory Session", function () {
 			session.addIdea(new Idea("Aded Idea"));
 			session.addNote(new Note("Add Note"));
 			session.addBug(new Bug("Add Bug2"));
-			//session.addQuestion(new Question("Add Question"));
+			//session.addStep(new Step("Add Step"));
 			session.addNote(new Note("Add Note2"));
 			session.addBug(new Bug("Add Bug3"));
 
 			var bugs = session.getBugs();
 			var notes = session.getNotes();
 			var ideas = session.getIdeas();
-			var questions = session.getQuestions();
+			var steps = session.getSteps();
 
 			expect(bugs.length).toEqual(3);
 			expect(notes.length).toEqual(2);
 			expect(ideas.length).toEqual(1);
-			expect(questions.length).toEqual(0);
+			expect(steps.length).toEqual(0);
 
 		});
 
@@ -183,7 +183,7 @@ describe("Exploratory Session", function () {
 			session.addBug(new Bug("Add Bug2"));
 			session.addNote(new Note("Add Note2"));
 			session.addBug(new Bug("Add Bug3"));
-			session.addQuestion(new Question("Add Question"));
+			session.addStep(new Step("Add Step"));
 
 			var annotations = session.getAnnotations();
 			expect(annotations.length).toEqual(7);
@@ -191,19 +191,19 @@ describe("Exploratory Session", function () {
 			var newBugName = "new bug name";
 			var newIdeaName = "new idea name";
 			var newNoteName = "new note name";
-			var newQuestionName = "new question name";
+			var newstepName = "new step name";
 
 			annotations[0].setName(newBugName);
 			annotations[1].setName(newIdeaName);
 			annotations[2].setName(newNoteName);
-			annotations[6].setName(newQuestionName);
+			annotations[6].setName(newstepName);
 
 			expect(annotations.length).toEqual(7);
 
 			expect(annotations[0].getName()).toEqual(newBugName);
 			expect(annotations[1].getName()).toEqual(newIdeaName);
 			expect(annotations[2].getName()).toEqual(newNoteName);
-			expect(annotations[6].getName()).toEqual(newQuestionName);
+			expect(annotations[6].getName()).toEqual(newstepName);
 
 
 		});
@@ -213,7 +213,7 @@ describe("Exploratory Session", function () {
 			session.addBug(new Bug("Add Bug"));
 			session.addIdea(new Idea("Add Idea"));
 			session.addNote(new Note("Add Note"));
-			session.addQuestion(new Question("Add Question"));
+			session.addStep(new Step("Add Step"));
 
 			var annotations = session.getAnnotations();
 
@@ -227,7 +227,7 @@ describe("Exploratory Session", function () {
 
 			expect(annotations[0].getName()).toEqual("Add Bug");
 			expect(annotations[1].getName()).toEqual("Add Note");
-			expect(annotations[2].getName()).toEqual("Add Question");
+			expect(annotations[2].getName()).toEqual("Add Step");
 
 
 		});

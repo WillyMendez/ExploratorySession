@@ -20,7 +20,7 @@ ExportSessionCSV.prototype.getCSVData = function() {
 
         dateFormat = annotation.getTimeStamp().toString('dd-MM-yyyy HH:mm');
 
-        if (annotation.constructor.name == "Question"){
+        if (annotation.constructor.name == "Step"){
             dataString =  "" + "," + "" + "," + annotation.getName() + "," + annotation.getURL() + "," + dateFormat;
         } else
             dataString =  annotation.constructor.name + "," + annotation.getName() + "," + annotation.getURL() + "," + dateFormat;

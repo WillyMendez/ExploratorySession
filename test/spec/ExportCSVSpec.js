@@ -11,13 +11,13 @@ describe("Export Session to CSV", function(){
             session.addBug(new Bug("Add Bug","http://TestSite/bugUrl.com",new Date("2015-10-30 08:00:00")));
 			session.addIdea(new Idea("Add Idea","http://TestSite/IdeaUrl.com",new Date("2015-10-30 08:05:00")));
 			session.addNote(new Note("Add Note","http://TestSite/NoteUrl.com",new Date("2015-10-30 08:10:00")));
-			session.addQuestion(new Question("Add Question","http://TestSite/QuestionUrl.com",new Date("2015-10-30 08:15:00")));
+			session.addStep(new Step("Add Step","http://TestSite/StepUrl.com",new Date("2015-10-30 08:15:00")));
 
             var expectedCSV = "TimeStamp,Type,Name,URL\n" +
             			      "30-10-2015 08:00,Bug,Add Bug,http://TestSite/bugUrl.com\n" +
             			      "30-10-2015 08:05,Idea,Add Idea,http://TestSite/IdeaUrl.com\n" +
             			      "30-10-2015 08:10,Note,Add Note,http://TestSite/NoteUrl.com\n" +
-            			      "30-10-2015 08:15,Question,Add Question,http://TestSite/QuestionUrl.com\n";
+            			      "30-10-2015 08:15,Step,Add Step,http://TestSite/StepUrl.com\n";
 
 			var actualCSV = new ExportSessionCSV(session).getCSVData();
 

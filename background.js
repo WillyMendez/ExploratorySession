@@ -11,8 +11,8 @@ chrome.extension.onMessage.addListener(function (request, sender, sendResponse) 
         case "addNote":
             addAnnotation("Note", request.name, request.imageURL);
             break;
-        case "addQuestion":
-            addAnnotation("Question", request.name, request.imageURL);
+        case "addStep":
+            addAnnotation("Step", request.name, request.imageURL);
             break;
         case "updateAnnotationName":
             var AnnotationID = request.annotationID;
@@ -84,9 +84,9 @@ function addAnnotation(type, name, imageURL) {
                     var newIdea = new Idea(name, currentUrl, now, imageURL);
                     session.addIdea(newIdea);
                     break;
-                case "Question":
-                    var newQuestion = new Question(name, currentUrl, now, imageURL);
-                    session.addQuestion(newQuestion);
+                case "Step":
+                    var newStep = new Step(name, currentUrl, now, imageURL);
+                    session.addStep(newStep);
                     break;
             }
         });

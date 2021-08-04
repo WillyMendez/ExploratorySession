@@ -32,7 +32,7 @@ function initData() {
     )
   );
   session.addBug(new Bug("Add Bug2", url, currentDateTime));
-  session.addQuestion(new Question("Add Question", url, currentDateTime));
+  session.addStep(new Step("Add Step", url, currentDateTime));
   session.addNote(new Note("Add Note2", url, currentDateTime));
   session.addBug(new Bug("Add Bug3", url, currentDateTime));
 
@@ -251,10 +251,10 @@ function getIconType(type) {
       DOM_img.alt = "Idea";
       DOM_img.title = "Idea";
       break;
-    case "Question":
+    case "Step":
       DOM_img.src = "../images/question.svg";
-      DOM_img.alt = "Question";
-      DOM_img.title = "Question";
+      DOM_img.alt = "Step";
+      DOM_img.title = "Step";
       break;
   }
 
@@ -280,14 +280,14 @@ function drawPieChart() {
     color: "#17a2b8",
     indexLabel: session.getIdeas().length == 0 ? "" : "#percent%"
   };
-  var questions = {
-    y: session.getQuestions().length,
-    name: "Questions",
+  var steps = {
+    y: session.getSteps().length,
+    name: "Steps",
     color: "#28a745",
-    indexLabel: session.getQuestions().length == 0 ? "" : "#percent%"
+    indexLabel: session.getSteps().length == 0 ? "" : "#percent%"
   };
 
-  var data = [bugs, notes, ideas, questions];
+  var data = [bugs, notes, ideas, steps];
 
   var chart = new CanvasJS.Chart("canvasHolder", {
     animationEnabled: true,

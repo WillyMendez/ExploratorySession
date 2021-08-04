@@ -75,17 +75,17 @@ Note.prototype.getType = function(){
     return "Note";
 };
 
-//Question class inherit from annotation
-Question.prototype = new Annotation();        // Here's where the inheritance occurs
-Question.prototype.constructor=Question;
-function Question(name,url,timestamp,imageURL){
+//Step class inherit from annotation
+Step.prototype = new Annotation();        // Here's where the inheritance occurs
+Step.prototype.constructor=Step;
+function Step(name,url,timestamp,imageURL){
     this.type = this.getType();
 	this.name = name;
     this.URL = url;
     this.timeStamp = timestamp;
     this.imageURL = imageURL;
 }
-Question.prototype.getType = function(){
-    return "Question";
+Step.prototype.getType = function(){
+    return "Step";
 };
 
