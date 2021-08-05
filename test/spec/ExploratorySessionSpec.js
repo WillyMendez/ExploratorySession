@@ -191,19 +191,19 @@ describe("Exploratory Session", function () {
 			var newBugName = "new bug name";
 			var newIdeaName = "new idea name";
 			var newNoteName = "new note name";
-			var newstepName = "new step name";
+			var newStepName = "new step name";
 
 			annotations[0].setName(newBugName);
 			annotations[1].setName(newIdeaName);
 			annotations[2].setName(newNoteName);
-			annotations[6].setName(newstepName);
+			annotations[6].setName(newStepName);
 
 			expect(annotations.length).toEqual(7);
 
 			expect(annotations[0].getName()).toEqual(newBugName);
 			expect(annotations[1].getName()).toEqual(newIdeaName);
 			expect(annotations[2].getName()).toEqual(newNoteName);
-			expect(annotations[6].getName()).toEqual(newstepName);
+			expect(annotations[6].getName()).toEqual(newStepName);
 
 
 		});

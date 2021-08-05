@@ -252,7 +252,7 @@ function getIconType(type) {
       DOM_img.title = "Idea";
       break;
     case "Step":
-      DOM_img.src = "../images/question.svg";
+      DOM_img.src = "../images/note.svg";
       DOM_img.alt = "Step";
       DOM_img.title = "Step";
       break;
