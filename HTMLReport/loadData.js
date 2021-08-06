@@ -86,7 +86,7 @@ function loadTable() {
 
   var table = document.createElement("table");
   table.setAttribute("id", "sessionActivityTable");
-  table.setAttribute("class", "table");
+  table.setAttribute("class", "table table-striped");
 
   var tableHead = document.createElement("thead");
 

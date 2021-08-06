@@ -22,7 +22,8 @@ function annotationListeners() {
     addNewBug("")
   });
   $(document).on('click', '#addNewStepBtn', () => {
-    addNewStep("")
+    addNewStep(""),
+      $("#footerCard").fadeIn();
   });
   $(document).on('click', '#addNewBugSCBtn', () => {
     addNewAnnotationWithScreenShot("bug")
